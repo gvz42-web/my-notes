@@ -5,9 +5,7 @@ import { createVuePlugin as vue2 } from 'vite-plugin-vue2'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue2({
-      jsx: true,
-    }),
+    vue2(),
   ],
   resolve: {
     alias: {
@@ -15,7 +13,23 @@ export default defineConfig({
       vue: 'vue/dist/vue.esm.js',
     },
   },
+  css: {
+    preprocessorOptions: {
+      sass: {
+        additionalData: `@import "@/styles/_main.sass"
+        `,
+      },
+    },
+  },
+  module: {
+    rules: [
+      {
+        test: /\.sass$/,
+        loaders: ['style', 'css', 'sass']
+      }
+    ]
+  },
   build: {
-    brotliSize: false, // unsupported in StackBlitz
+    brotliSize: false,
   },
 })

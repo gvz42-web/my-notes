@@ -1,29 +1,23 @@
 <script>
 import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld,
   },
 })
 </script>
 
 <template>
   <div id="app">
-    <img src="@/assets/logo.svg" alt="Vite logo" />
-    <HelloWorld msg="Hello Vue 2 + Vite" />
+    <h1>Hellooo!</h1>
+    <router-view></router-view>
   </div>
+
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang='sass'>
+#app
+  background-color: $dark
+  font-family: 'Montserrat', sans-serif
 </style>

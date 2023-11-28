@@ -7,11 +7,15 @@
     "serve": "vite preview"
   },
   "devDependencies": {
+    "sass": "^1.69.5",
+    "sass-loader": "^13.3.2",
     "vite": "^3.0.9",
     "vite-plugin-vue2": "^2.0.2",
     "vue-template-compiler": "^2.7.10"
   },
   "dependencies": {
-    "vue": "^2.7.10"
+    "pinia": "^2.1.7",
+    "vue": "^2.7.10",
+    "vue-router": "^3.0.0"
   }
 }
