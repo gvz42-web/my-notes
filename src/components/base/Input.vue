@@ -5,7 +5,7 @@ export default {
   name: 'Input',
   data() {
     return {
-      isHidden: true
+      isVisible: false
     }
   },
   props: {
@@ -34,11 +34,14 @@ export default {
     length() {
       return this.value.length
     },
+    isTextarea (){
+      return this.type === 'textarea'
+    },
     inputType() {
-      return this.type === 'password' ? (this.isHidden ? 'password' : 'text') : 'password'
+      return this.type === 'password' ? (!this.isVisible ? 'password' : 'text') : this.type
     },
     passwordIcon() {
-      return this.isHidden ? onPasswordIcon : offPasswordIcon
+      return !this.isVisible ? onPasswordIcon : offPasswordIcon
     },
     error() {
       if (this.value.length > this.limit) {
@@ -54,9 +57,10 @@ export default {
 <template>
   <div class='wrapper'>
     <div class='label'>{{ label }}</div>
-    <div class='input'>
-      <input :type='inputType' :placeholder='placeholder' :value='value' @input="$emit('input', $event.target.value)">
-      <img :src='passwordIcon' alt='' v-if='type === "password"' @click='isHidden = !isHidden'>
+    <div class='input' :class='type'>
+      <input v-if='!isTextarea' :type='inputType' :placeholder='placeholder' :value='value' @input="$emit('input', $event.target.value)" >
+      <textarea v-else :value='value' :placeholder='placeholder' @input="$emit('input', $event.target.value)"></textarea>
+      <img :src='passwordIcon' alt='' v-if='type === "password"' @click='isVisible = !isVisible'>
     </div>
     <div class='footer'>
       <div class='error-message'>{{ error }}</div>
@@ -86,7 +90,7 @@ export default {
     border: 2px solid $white
     background-color: $white
     border-radius: 36px
-    padding:  28px
+    padding: 16px 28px
     height: 72px
     display: flex
     align-items: center
@@ -101,10 +105,25 @@ export default {
       border: none
       flex: 1 0 0
 
-    &:hover
-      border: 2px solid $green-light
-
       &::placeholder
         color: $gray
+
+    &.textarea
+      height: 280px
+
+      textarea
+        @extend .text-small
+        height: 100%
+        resize: none
+        outline: none
+        border: none
+        flex: 1 0 0
+        font-family: inherit
+
+        &::placeholder
+          color: $gray
+
+    &:hover
+      border: 2px solid $green-light
 
 </style>

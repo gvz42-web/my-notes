@@ -20,4 +20,5 @@ export default defineComponent({
 #app
   background-color: $dark
   font-family: 'Montserrat', sans-serif
+  color: $white
 </style>
