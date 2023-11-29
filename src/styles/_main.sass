@@ -24,6 +24,9 @@ h2
   font-size: 48px
   font-weight: 600
   line-height: 150%
+  @include phone
+    font-size: 32px
+    line-height: 36px
 
 h3
   font-size: 32px
@@ -47,16 +50,20 @@ h4
   font-size: 18px
   font-weight: 400
   line-height: 28px
+  @include phone
+    font-size: 14px
+    line-height: 24px
 
 .text-small-bold
   font-weight: 700
 
-a
+.link
   @extend .text-small-bold
   text-decoration: none
   color: $green-light
+  cursor: pointer
 
-a:hover
+.link:hover
   color: $white
 
 .container

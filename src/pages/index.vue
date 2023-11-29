@@ -2,10 +2,12 @@
 import Button from '@/components/base/Button.vue'
 import Input from '@/components/base/Input.vue'
 import Note from '@/components/Note.vue'
+import Login from '@/components/Login.vue'
+import CreateNote from '@/components/CreateNote.vue'
 
 export default {
   name: 'index',
-  components: { Note, Input, Button },
+  components: { CreateNote, Login, Note, Input, Button },
   data() {
     return {
       text: 'dfg',
@@ -16,6 +18,8 @@ export default {
 
 <template>
   <div class="container">
+    <!--    <Login />-->
+    <!--    <CreateNote />-->
     <div class="index">
       <div class="text">
         <h1>Мои заметки</h1>

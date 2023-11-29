@@ -1,29 +1,47 @@
 <script>
+import CloseIcon from '@/assets/icons/close-icon.svg'
+import LoginIcon from '@/assets/icons/login-icon.svg'
+import AddIcon from '@/assets/icons/add-icon.svg'
+
 export default {
   name: 'Button',
   computed: {
     isSlotPassed() {
       return !!this.$slots.default
-    }
+    },
+    getIcon() {
+      if (this.icon === 'close') {
+        return CloseIcon
+      }
+      if (this.icon === 'login') {
+        return LoginIcon
+      }
+      if (this.icon === 'add') {
+        return AddIcon
+      }
+    },
   },
   props: {
     disabled: {
-      type: Boolean
-    }
-  }
+      type: Boolean,
+    },
+    icon: {
+      type: String,
+    },
+  },
 }
 </script>
 
 <template>
-  <button class='no-text' :disabled='disabled'>
-    <img src='@/assets/icons/login-icon.svg' alt='' class='icon'>
-    <span class='text-normal'>
+  <button :class="{ 'no-text': !isSlotPassed }" :disabled="disabled">
+    <img v-if="icon" :src="getIcon" alt="" class="icon" />
+    <span v-if="isSlotPassed" class="text-normal">
       <slot></slot>
     </span>
   </button>
 </template>
 
-<style scoped lang='sass'>
+<style lang="sass" scoped>
 button
   border: none
   outline: none
@@ -41,8 +59,12 @@ button
   .icon
     width: 32px
 
-  //&.no-text
-  //  padding: 20px
+  &.no-text
+    width: 56px
+    padding: 0
+
+    .icon
+      width: 16px
 
   &:hover
     background-color: $green-middle
@@ -52,8 +74,4 @@ button
 
   &:disabled
     background-color: $gray
-
-
-
-
 </style>

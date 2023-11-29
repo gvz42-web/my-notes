@@ -1,10 +1,12 @@
 <script>
 import { defineComponent } from 'vue'
 import Button from '@/components/base/Button.vue'
+import Modal from '@/components/base/Modal.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
+    Modal,
     Button,
   },
 })
@@ -16,7 +18,7 @@ export default defineComponent({
       <div class="header">
         <img alt="" class="logo" src="@/assets/logo.svg" />
         <div class="login">
-          <Button>Вход</Button>
+          <Button icon="login">Вход</Button>
         </div>
       </div>
     </header>

@@ -1,40 +1,40 @@
 <script>
 import offPasswordIcon from '@/assets/icons/off-password-icon.svg'
 import onPasswordIcon from '@/assets/icons/on-password-icon.svg'
+
 export default {
   name: 'Input',
   data() {
     return {
-      isVisible: false
+      isVisible: false,
     }
   },
   props: {
     value: {
-      type: String
+      type: String,
     },
     type: {
       type: String,
-      default: 'text'
+      default: 'text',
     },
     placeholder: {
       type: String,
-      default: 'Введите значение'
+      default: 'Введите значение',
     },
     limit: {
       type: Number,
-      default: 100
     },
     label: {
       type: String,
-      default: 'Введите значение'
-    }
+      default: 'Введите значение',
+    },
   },
   emits: ['input'],
   computed: {
     length() {
       return this.value.length
     },
-    isTextarea (){
+    isTextarea() {
       return this.type === 'textarea'
     },
     inputType() {
@@ -49,28 +49,39 @@ export default {
       } else {
         return ''
       }
-    }
-  }
+    },
+  },
 }
 </script>
 
 <template>
-  <div class='wrapper'>
-    <div class='label'>{{ label }}</div>
-    <div class='input' :class='type'>
-      <input v-if='!isTextarea' :type='inputType' :placeholder='placeholder' :value='value' @input="$emit('input', $event.target.value)" >
-      <textarea v-else :value='value' :placeholder='placeholder' @input="$emit('input', $event.target.value)"></textarea>
-      <img :src='passwordIcon' alt='' v-if='type === "password"' @click='isVisible = !isVisible'>
+  <div class="input-wrapper">
+    <div class="label">{{ label }}</div>
+    <div :class="type" class="input">
+      <input
+        v-if="!isTextarea"
+        :placeholder="placeholder"
+        :type="inputType"
+        :value="value"
+        @input="$emit('input', $event.target.value)"
+      />
+      <textarea
+        v-else
+        :placeholder="placeholder"
+        :value="value"
+        @input="$emit('input', $event.target.value)"
+      ></textarea>
+      <img v-if="type === 'password'" :src="passwordIcon" alt="" @click="isVisible = !isVisible" />
     </div>
-    <div class='footer'>
-      <div class='error-message'>{{ error }}</div>
-      <div class='limit'>{{ length + '/' + limit }}</div>
+    <div class="footer">
+      <div class="error-message">{{ error }}</div>
+      <div v-if="limit" class="limit">{{ length + '/' + limit }}</div>
     </div>
   </div>
 </template>
 
-<style scoped lang='sass'>
-.wrapper
+<style lang="sass" scoped>
+.input-wrapper
   color: $gray
   display: flex
   flex-direction: column
@@ -111,6 +122,9 @@ export default {
     &.textarea
       height: 280px
 
+      @include laptop
+        height: 168px
+
       textarea
         @extend .text-small
         height: 100%
@@ -125,5 +139,4 @@ export default {
 
     &:hover
       border: 2px solid $green-light
-
 </style>
