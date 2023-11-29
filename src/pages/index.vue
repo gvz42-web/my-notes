@@ -8,23 +8,52 @@ export default {
   components: { Note, Input, Button },
   data() {
     return {
-      text: 'dfg'
+      text: 'dfg',
     }
-  }
+  },
 }
 </script>
 
 <template>
-  <div>
-    <h1>Index here</h1>
-    <Button>Войти</Button>
-    <Input v-model='text' type='textarea'/>
-    <Note title='Заголовок' text='Текст заметки'/>
-    <router-link to='/'>Зарегистрируйтесь</router-link>
+  <div class="container">
+    <div class="index">
+      <div class="text">
+        <h1>Мои заметки</h1>
+        <h3>Не забывай о важном, храни его в облаке.</h3>
+      </div>
+      <img alt="" src="@/assets/index-image.svg" />
+    </div>
   </div>
-
 </template>
 
-<style scoped lang='sass'>
+<style lang="sass" scoped>
+.index
+  display: flex
+  justify-content: space-between
+  align-items: center
+  height: 100%
+  @include tablet
+    padding-top: 40px
+    flex-direction: column
 
+  .text
+    width: 488px
+    display: flex
+    flex-direction: column
+    gap: 40px
+    padding-bottom: 48px
+    @include tablet
+      align-items: center
+      text-align: center
+      padding-bottom: 0
+      width: 100%
+      gap: 20px
+
+    h3
+      width: 394px
+      color: $gray
+      @include tablet
+        width: 100%
+  img
+    height: 100%
 </style>

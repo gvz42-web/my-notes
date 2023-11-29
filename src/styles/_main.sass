@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap')
 @import 'colors'
+@import "mixins"
 
 *
   box-sizing: border-box
@@ -8,10 +9,16 @@ body
   margin: 0
   padding: 0
 
+h1,h2,h3,h4
+  margin: 0
+
 h1
   font-size: 104px
   font-weight: 900
   line-height: 100%
+  @include phone
+    font-size: 60px
+    line-height: 64px
 
 h2
   font-size: 48px
@@ -22,6 +29,8 @@ h3
   font-size: 32px
   font-weight: 400
   line-height: 150%
+  @include phone
+    font-size: 24px
 
 h4
   font-size: 24px
@@ -49,5 +58,15 @@ a
 
 a:hover
   color: $white
+
+.container
+  max-width: 1680px
+  height: 100%
+  margin: 0 auto
+  padding: 0 80px
+  @include tablet
+    padding: 0 40px
+  @include phone
+    padding: 0 20px
 
 

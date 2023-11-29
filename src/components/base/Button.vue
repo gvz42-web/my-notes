@@ -36,6 +36,7 @@ button
   justify-content: center
   align-items: center
   gap: 12px
+  cursor: pointer
 
   .icon
     width: 32px
