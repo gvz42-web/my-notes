@@ -67,7 +67,7 @@ h4
   color: $white
 
 .container
-  max-width: 1680px
+  max-width: 1760px
   height: 100%
   margin: 0 auto
   padding: 0 80px
@@ -75,5 +75,12 @@ h4
     padding: 0 40px
   @include phone
     padding: 0 20px
+
+  &.p-vertical
+    padding: 40px 80px
+    @include tablet
+      padding: 40px
+    @include phone
+      padding: 20px
 
 

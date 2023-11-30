@@ -22,9 +22,7 @@ export default defineComponent({
         </div>
       </div>
     </header>
-    <main>
-      <router-view></router-view>
-    </main>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -45,9 +43,4 @@ export default defineComponent({
     .logo
       @include phone
         width: 154px
-
-  main
-    height: calc(100vh - 136px)
-    @include laptop
-      height: calc(100vh - 96px)
 </style>

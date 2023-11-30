@@ -17,47 +17,54 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <!--    <Login />-->
-    <!--    <CreateNote />-->
-    <div class="index">
-      <div class="text">
-        <h1>Мои заметки</h1>
-        <h3>Не забывай о важном, храни его в облаке.</h3>
+  <main>
+    <div class="container">
+      <!--    <Login />-->
+      <!--    <CreateNote />-->
+      <div class="index">
+        <div class="text">
+          <h1>Мои заметки</h1>
+          <h3>Не забывай о важном, храни его в облаке.</h3>
+        </div>
+        <img alt="" src="@/assets/index-image.svg" />
       </div>
-      <img alt="" src="@/assets/index-image.svg" />
     </div>
-  </div>
+  </main>
 </template>
 
 <style lang="sass" scoped>
-.index
-  display: flex
-  justify-content: space-between
-  align-items: center
-  height: 100%
-  @include tablet
-    padding-top: 40px
-    flex-direction: column
+main
+  height: calc(100vh - 136px)
+  @include laptop
+    height: calc(100vh - 96px)
 
-  .text
-    width: 488px
+  .index
     display: flex
-    flex-direction: column
-    gap: 40px
-    padding-bottom: 48px
-    @include tablet
-      align-items: center
-      text-align: center
-      padding-bottom: 0
-      width: 100%
-      gap: 20px
-
-    h3
-      width: 394px
-      color: $gray
-      @include tablet
-        width: 100%
-  img
+    justify-content: space-between
+    align-items: center
     height: 100%
+    @include tablet
+      padding-top: 40px
+      flex-direction: column
+
+    .text
+      width: 488px
+      display: flex
+      flex-direction: column
+      gap: 40px
+      padding-bottom: 48px
+      @include tablet
+        align-items: center
+        text-align: center
+        padding-bottom: 0
+        width: 100%
+        gap: 20px
+
+      h3
+        width: 394px
+        color: $gray
+        @include tablet
+          width: 100%
+    img
+      height: 100%
 </style>
