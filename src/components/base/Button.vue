@@ -33,7 +33,7 @@ export default {
 </script>
 
 <template>
-  <button :class="{ 'no-text': !isSlotPassed }" :disabled="disabled">
+  <button :class="{ 'no-text': !isSlotPassed }" :disabled="disabled" @click="$emit('click')">
     <img v-if="icon" :src="getIcon" alt="" class="icon" />
     <span v-if="isSlotPassed" class="text-normal">
       <slot></slot>
@@ -55,6 +55,7 @@ button
   align-items: center
   gap: 12px
   cursor: pointer
+  transition: background-color 0.2s ease
 
   .icon
     width: 32px

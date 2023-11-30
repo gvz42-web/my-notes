@@ -2,6 +2,8 @@
 import Modal from '@/components/base/Modal.vue'
 import Input from '@/components/base/Input.vue'
 import Button from '@/components/base/Button.vue'
+import { mapStores } from 'pinia'
+import { useModalStore } from '@/stores/modalService'
 
 export default {
   name: 'CreateNote',
@@ -12,11 +14,14 @@ export default {
       text: '',
     }
   },
+  computed: {
+    ...mapStores(useModalStore),
+  },
 }
 </script>
 
 <template>
-  <Modal error="" title="Добавление заметки">
+  <Modal error="" title="Добавление заметки" @close="modalStore.toggleCreate()">
     <template #body>
       <Input v-model="title" label="Название заметки" limit="100" placeholder="Введите название" type="text" />
       <Input v-model="text" label="Текст заметки" limit="500" placeholder="Введите текст" type="textarea" />

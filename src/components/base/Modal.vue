@@ -17,9 +17,9 @@ export default {
 
 <template>
   <div class="wrapper">
-    <div class="bg"></div>
+    <div class="bg" @click="$emit('close')"></div>
     <div class="modal">
-      <Button class="close" icon="close"></Button>
+      <Button class="close" icon="close" @click="$emit('close')"></Button>
       <h2>{{ title }}</h2>
       <div class="body">
         <slot name="body"></slot>

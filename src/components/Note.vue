@@ -15,6 +15,18 @@ export default {
       type: String,
     },
   },
+  computed: {
+    textMaxHeight() {
+      const width = window.innerWidth
+      if (width < 400) {
+        return 294
+      } else if (width < 800) {
+        return 128
+      } else {
+        return 288
+      }
+    },
+  },
 }
 </script>
 
@@ -22,7 +34,11 @@ export default {
   <div class="note">
     <h4 class="title">{{ title }}</h4>
     <div class="text text-normal">
-      <v-clamp autoresize class="text-inner" tag="span">{{ text }}</v-clamp>
+      <div class="inner-text">
+        <v-clamp v-cloak :max-height="textMaxHeight" autoresize tag="div">
+          {{ text }}
+        </v-clamp>
+      </div>
     </div>
     <div class="footer">
       <div class="delete"><img alt="" src="@/assets/icons/close-icon.svg" />Удалить</div>
@@ -42,14 +58,7 @@ export default {
     border-bottom: 1px solid $green
 
   .text
-    border-bottom: 28px
-
-    .text-inner
-      max-height: 288px
-      @include tablet
-        max-height: 128px
-      @include phone
-        max-height: 294px
+    padding-bottom: 28px
 
   .footer
     display: flex
@@ -62,4 +71,10 @@ export default {
       display: flex
       align-items: center
       gap: 12px
+      cursor: pointer
+      transition: background-color 0.2s ease
+      border-radius: 30px
+
+      &:hover
+        background-color: $green-dark
 </style>

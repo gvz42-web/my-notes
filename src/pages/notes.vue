@@ -1,12 +1,16 @@
 <script>
 import Button from '@/components/base/Button.vue'
 import Note from '@/components/Note.vue'
+import CreateNote from '@/components/CreateNote.vue'
+import { mapStores } from 'pinia'
+import { useModalStore } from '@/stores/modalService'
 
 export default {
   name: 'notes',
-  components: { Note, Button },
+  components: { CreateNote, Note, Button },
   data() {
     return {
+      status: 0,
       notes: [
         {
           title: 'Заголовок',
@@ -31,17 +35,21 @@ export default {
       ],
     }
   },
+  computed: {
+    ...mapStores(useModalStore),
+  },
 }
 </script>
 
 <template>
   <main>
+    <CreateNote v-if="modalStore.isCreateOpen" />
     <div class="container p-vertical">
       <div class="notes-list">
-        <Note v-for="item of notes" :text="item.text | truncate(295)" :title="item.title" />
+        <Note v-for="(item, i) of notes" :key="i" :text="item.text" :title="item.title" />
       </div>
 
-      <Button class="add-button" icon="add" />
+      <Button class="add-button" icon="add" @click="modalStore.toggleCreate" />
     </div>
   </main>
 </template>
