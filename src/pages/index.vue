@@ -24,7 +24,7 @@ export default {
           <h1>Мои заметки</h1>
           <h3>Не забывай о важном, храни его в облаке.</h3>
         </div>
-        <img alt="" src="@/assets/index-image.svg" />
+        <div class="image"></div>
       </div>
     </div>
   </main>
@@ -40,6 +40,7 @@ main
     display: flex
     justify-content: space-between
     align-items: center
+    width: 100%
     height: 100%
     @include tablet
       padding-top: 40px
@@ -63,9 +64,14 @@ main
         color: $gray
         @include tablet
           width: 100%
-    img
+    .image
       height: 100%
-      @include laptop
-        flex-shrink: 2
-        width: 100%
+      width: 100%
+      background-image: url('@/assets/index-image.svg')
+      background-size: contain
+      background-position: center
+      background-repeat: no-repeat
+
+      @include tablet
+        background-position: bottom
 </style>

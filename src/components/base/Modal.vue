@@ -42,6 +42,7 @@ export default {
   width: 100vw
   height: 100vh
   display: flex
+  flex-direction: column
   justify-content: center
   align-items: center
   overflow: scroll
@@ -50,7 +51,7 @@ export default {
     padding: 4px
 
   @include little-height
-    align-items: flex-start
+    justify-content: flex-start
 
   .bg
     position: fixed
