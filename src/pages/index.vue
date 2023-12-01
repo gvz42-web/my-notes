@@ -69,7 +69,7 @@ main
       width: 100%
       background-image: url('@/assets/index-image.svg')
       background-size: contain
-      background-position: center
+      background-position: right
       background-repeat: no-repeat
 
       @include tablet
