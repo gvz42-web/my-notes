@@ -25,13 +25,29 @@ export default {
     ...mapStores(useAuthStore, useModalStore),
   },
   methods: {
+    clear() {
+      this.email = ''
+      this.password = ''
+      this.passwordRepeat = ''
+      this.error = ''
+    },
     submit: async function () {
-      const result = await this.authStore.login(this.email, this.password)
-      if (result.success) {
-        this.$router.push('/notes')
-        this.modalStore.toggleLogin()
+      if (this.isLogin) {
+        const result = await this.authStore.login(this.email, this.password)
+        if (result.success) {
+          this.$router.push('/notes')
+          this.modalStore.toggleLogin()
+        } else {
+          this.error = result.message
+        }
       } else {
-        this.error = result.message
+        const result = await this.authStore.registration(this.email, this.password, this.passwordRepeat)
+        if (result.success) {
+          this.isLogin = true
+          this.clear()
+        } else {
+          this.error = result.message
+        }
       }
     },
   },

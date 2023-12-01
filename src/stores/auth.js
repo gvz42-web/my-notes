@@ -64,6 +64,21 @@ export const useAuthStore = defineStore('auth', {
       this.email = ''
       this.isLogin = false
     },
+    async registration(email, password, confirm_password) {
+      return await api
+        .post('reg', { email, password, confirm_password })
+        .then((data) => {
+          return {
+            success: true,
+          }
+        })
+        .catch((err) => {
+          return {
+            success: false,
+            message: errorMessage(err),
+          }
+        })
+    },
   },
   persist: true,
 })
