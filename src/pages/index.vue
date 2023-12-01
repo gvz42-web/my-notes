@@ -65,4 +65,7 @@ main
           width: 100%
     img
       height: 100%
+      @include laptop
+        flex-shrink: 2
+        width: 100%
 </style>

@@ -39,8 +39,8 @@ export default {
 <template>
   <Modal :error="error" title="Добавление заметки" @close="modalStore.toggleCreate">
     <template #body>
-      <Input v-model="title" :limit="100" label="Название заметки" placeholder="Введите название" type="text" />
-      <Input v-model="text" :limit="500" label="Текст заметки" placeholder="Введите текст" type="textarea" />
+      <Input v-model="title" :limit="64" label="Название заметки" placeholder="Введите название" type="text" />
+      <Input v-model="text" :limit="255" label="Текст заметки" placeholder="Введите текст" type="textarea" />
     </template>
     <template #footer>
       <div></div>

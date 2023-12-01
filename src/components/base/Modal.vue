@@ -36,7 +36,7 @@ export default {
 
 <style lang="sass" scoped>
 .wrapper
-  position: absolute
+  position: fixed
   top: 0
   left: 0
   width: 100vw
@@ -44,12 +44,16 @@ export default {
   display: flex
   justify-content: center
   align-items: center
+  overflow: scroll
   z-index: 4
   @include phone
     padding: 4px
 
+  @include little-height
+    align-items: flex-start
+
   .bg
-    position: absolute
+    position: fixed
     width: 100%
     height: 100vh
     background-color: $dark

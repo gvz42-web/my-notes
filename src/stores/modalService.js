@@ -18,9 +18,18 @@ export const useModalStore = defineStore('modal', {
   actions: {
     toggleLogin() {
       this.login = !this.login
+      this.toggleBodyScroll()
     },
     toggleCreate() {
       this.create = !this.create
+      this.toggleBodyScroll()
+    },
+    toggleBodyScroll() {
+      if (this.login || this.create) {
+        document.body.classList.add('scroll-off')
+      } else {
+        document.body.classList.remove('scroll-off')
+      }
     },
   },
 })

@@ -90,6 +90,7 @@ main
     position: fixed
     right: 40px
     bottom: 40px
+    box-shadow: 0 15px 46px -10px rgba(0, 0, 0, 0.60)
 
     @include laptop
       right: 12px

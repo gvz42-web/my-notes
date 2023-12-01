@@ -32,7 +32,9 @@ export default {
 
 <template>
   <div class="note">
-    <h4 class="title">{{ title }}</h4>
+    <header>
+      <h4 class="title">{{ title }}</h4>
+    </header>
     <div class="text text-normal">
       <div class="inner-text">
         <v-clamp v-cloak :max-height="textMaxHeight" autoresize tag="div">
@@ -52,7 +54,6 @@ export default {
   background-color: $green-light
   box-shadow: 0 15px 15px -10px rgba(0, 0, 0, 0.40)
   position: relative
-  z-index: 1
 
   &:before
     content: ""
