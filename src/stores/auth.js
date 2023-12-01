@@ -8,6 +8,7 @@ export const useAuthStore = defineStore('auth', {
     return {
       token: '',
       email: '',
+      isLogin: false,
     }
   },
   getters: {
@@ -21,23 +22,31 @@ export const useAuthStore = defineStore('auth', {
         },
       }
     },
-    async isLogin() {
-      return await api
-        .get(resource, this.config)
-        .then((data) => {
-          this.email = data.data.email
-          return true
-        })
-        .catch((err) => false)
+    isAuthorized() {
+      return this.isLogin
     },
   },
   actions: {
+    async checkLogin() {
+      await api
+        .get(resource, this.config)
+        .then((data) => {
+          this.email = data.data.email
+          this.isLogin = true
+        })
+        .catch((err) => {
+          this.token = ''
+          this.email = ''
+          this.isLogin = false
+        })
+    },
     async login(email, password) {
       return await api
         .post(resource, { email, password })
         .then((data) => {
           this.token = data.data.accessToken
           this.email = email
+          this.isLogin = true
           return {
             success: true,
           }
@@ -48,6 +57,12 @@ export const useAuthStore = defineStore('auth', {
             message: errorMessage(err),
           }
         })
+    },
+    async logout() {
+      await api.delete(resource, this.config)
+      this.token = ''
+      this.email = ''
+      this.isLogin = false
     },
   },
   persist: true,

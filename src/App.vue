@@ -16,17 +16,12 @@ export default defineComponent({
     Modal,
     Button,
   },
-  data() {
-    return {
-      isLogin: false,
-    }
-  },
   computed: {
     ...mapStores(useModalStore, useAuthStore),
   },
   async mounted() {
-    this.isLogin = await this.authStore.isLogin
-    if (this.isLogin) {
+    await this.authStore.checkLogin()
+    if (this.authStore.isAuthorized) {
       this.$router.push('/notes')
     } else {
       this.$router.push('/')
@@ -41,7 +36,7 @@ export default defineComponent({
     <header class="container">
       <div class="header">
         <img alt="" class="logo" src="@/assets/logo.svg" />
-        <div v-if="!isLogin" class="login">
+        <div v-if="!authStore.isAuthorized" class="login">
           <Button icon="login" @click="modalStore.toggleLogin()">Вход</Button>
         </div>
         <Profile v-else />
