@@ -50,6 +50,20 @@ export default {
 .note
   border-radius: 12px
   background-color: $green-light
+  box-shadow: 0 15px 15px -10px rgba(0, 0, 0, 0.40)
+  position: relative
+
+  &:before
+    content: ""
+    position: absolute
+    top: 0
+    right: 0
+    border-width: 0 40px 40px 0
+    border-radius: 0 0 0 12px
+    border-style: solid
+    border-color: $dark $dark $green $green
+    display: block
+    width: 0
 
   .title, .text
     padding: 20px 28px
