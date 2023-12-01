@@ -20,7 +20,6 @@ export const useModalStore = defineStore('modal', {
       this.login = !this.login
     },
     toggleCreate() {
-      console.log(this.create)
       this.create = !this.create
     },
   },

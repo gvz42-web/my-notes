@@ -19,8 +19,6 @@ export default {
 <template>
   <main>
     <div class="container">
-      <!--    <Login />-->
-      <!--    <CreateNote />-->
       <div class="index">
         <div class="text">
           <h1>Мои заметки</h1>

@@ -4,6 +4,7 @@ import Input from '@/components/base/Input.vue'
 import Button from '@/components/base/Button.vue'
 import { mapStores } from 'pinia'
 import { useModalStore } from '@/stores/modalService'
+import { useNotesStore } from '@/stores/notes'
 
 export default {
   name: 'CreateNote',
@@ -12,23 +13,38 @@ export default {
     return {
       title: '',
       text: '',
+      error: '',
     }
   },
   computed: {
-    ...mapStores(useModalStore),
+    ...mapStores(useModalStore, useNotesStore),
+  },
+  methods: {
+    createNote: async function () {
+      const result = await this.notesStore.createNote({
+        title: this.title,
+        content: this.text,
+      })
+      if (result.success) {
+        this.modalStore.toggleCreate()
+        this.notesStore.fetchNotes()
+      } else {
+        this.error = result.message
+      }
+    },
   },
 }
 </script>
 
 <template>
-  <Modal error="" title="Добавление заметки" @close="modalStore.toggleCreate()">
+  <Modal :error="error" title="Добавление заметки" @close="modalStore.toggleCreate">
     <template #body>
-      <Input v-model="title" label="Название заметки" limit="100" placeholder="Введите название" type="text" />
-      <Input v-model="text" label="Текст заметки" limit="500" placeholder="Введите текст" type="textarea" />
+      <Input v-model="title" :limit="100" label="Название заметки" placeholder="Введите название" type="text" />
+      <Input v-model="text" :limit="500" label="Текст заметки" placeholder="Введите текст" type="textarea" />
     </template>
     <template #footer>
       <div></div>
-      <Button>Добавить</Button>
+      <Button @click="createNote">Добавить</Button>
     </template>
   </Modal>
 </template>

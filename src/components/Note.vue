@@ -41,7 +41,7 @@ export default {
       </div>
     </div>
     <div class="footer">
-      <div class="delete"><img alt="" src="@/assets/icons/close-icon.svg" />Удалить</div>
+      <div class="delete" @click="$emit('delete')"><img alt="" src="@/assets/icons/close-icon.svg" />Удалить</div>
     </div>
   </div>
 </template>
