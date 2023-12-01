@@ -52,6 +52,7 @@ export default {
   background-color: $green-light
   box-shadow: 0 15px 15px -10px rgba(0, 0, 0, 0.40)
   position: relative
+  z-index: 1
 
   &:before
     content: ""

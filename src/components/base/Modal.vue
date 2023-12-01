@@ -44,6 +44,7 @@ export default {
   display: flex
   justify-content: center
   align-items: center
+  z-index: 4
   @include phone
     padding: 4px
 
